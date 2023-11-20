@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Tic_Tac_Toe
 {
+    // Class which represents a real (physical) player
     internal class PhysPlayer : IPlayer
     {
         private char symbol;
@@ -18,6 +19,7 @@ namespace Tic_Tac_Toe
             return this;
         }
 
+        // Get the player's symbol
         public char GetSymbol() { return symbol; }
 
         // Set the player's number
@@ -33,6 +35,9 @@ namespace Tic_Tac_Toe
         // Get the next move from the player
         public int[] Move(int[,] board)
         {
+            Console.WriteLine("Player {0}'s turn: Choose wisely!", this.symbol);
+
+            // Ask the player for a column until he enters a valid one
             int column;
             do
             {
@@ -46,6 +51,7 @@ namespace Tic_Tac_Toe
                 }
             } while (column <= 0 || column > 3);
 
+            // Ask the player for a row until he enters a valid one
             int row;
             do
             {
@@ -60,6 +66,7 @@ namespace Tic_Tac_Toe
                 }
             } while (row <= 0 || row > 3);
 
+            // Substract one, because array indices start at 0
             return [row - 1, column - 1];
         }
     }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Tic_Tac_Toe
 {
+    // Interface for Players and Computers that forces certain methods to be implemented
     internal interface IPlayer
     {
         public IPlayer SetSymbol(char symbol);
