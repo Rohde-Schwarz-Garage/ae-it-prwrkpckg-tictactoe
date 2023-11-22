@@ -63,6 +63,7 @@
         }
 
         // Game tick
+        // The return value is true if the player has won and false if he hasn't
         private bool Tick(IPlayer player)
         {
             // Get the player's next move until it is a valid one
