@@ -4,8 +4,8 @@
     {
         static void Main(string[] args)
         {
-            // Start a new singleplayer game
-            Game game = new Game(new Computer());
+            // Start a new game
+            Game game = new Game();
             game.Start();
         }
     }
