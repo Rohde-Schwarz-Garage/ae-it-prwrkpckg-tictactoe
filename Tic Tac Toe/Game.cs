@@ -3,30 +3,24 @@
     internal class Game
     {
         private int[,] board;
-        private IPlayer player1;
-        private IPlayer player2;
+        private Player player1;
+        private Player player2;
 
-        // Base constructor
-        public Game(IPlayer player1, IPlayer player2)
+        // Constructor
+        public Game()
         {
             // Initialize the board
             board = new int[3, 3];
 
             // Initialize player symbols and numbers
-            this.player1 = player1.SetSymbol('X').SetNumber(1);
-            this.player2 = player2.SetSymbol('O').SetNumber(-1);
+            this.player1 = new Player().SetSymbol('X').SetNumber(1);
+            this.player2 = new Player().SetSymbol('O').SetNumber(-1);
         }
-
-        // Constructor for singleplayer
-        public Game(IPlayer computer) : this(new PhysPlayer(), computer) { }
-
-        // Constructor for multiplayer
-        public Game() : this(new PhysPlayer(), new PhysPlayer()) { }
 
         // Start the game
         public void Start()
         {
-            IPlayer curPlayer = player1;
+            Player curPlayer = player1;
             RenderBoard();
 
             // Game loop: runs until the game is finished
@@ -64,7 +58,7 @@
 
         // Game tick
         // The return value is true if the player has won and false if he hasn't
-        private bool Tick(IPlayer player)
+        private bool Tick(Player player)
         {
             // Get the player's next move until it is a valid one
             int[] move;

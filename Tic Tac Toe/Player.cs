@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace Tic_Tac_Toe
 {
-    // Class which represents a real (physical) player
-    internal class PhysPlayer : IPlayer
+    // Class which represents a player
+    internal class Player
     {
         private char symbol;
         private int number;
 
         // Set the player's symbol
-        public IPlayer SetSymbol(char symbol)
+        public Player SetSymbol(char symbol)
         {
             this.symbol = symbol;
             return this;
@@ -23,7 +23,7 @@ namespace Tic_Tac_Toe
         public char GetSymbol() { return symbol; }
 
         // Set the player's number
-        public IPlayer SetNumber(int number)
+        public Player SetNumber(int number)
         {
             this.number = number;
             return this;
