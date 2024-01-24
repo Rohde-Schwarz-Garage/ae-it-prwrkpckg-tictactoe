@@ -66,7 +66,7 @@ namespace Tic_Tac_Toe
         public int? minimax(int[,] board, int depth, bool isMaximizing)
         {
             // Returns 0 for a tie, 1 for a win and -1 if the enemy won
-            int? result = checkWinner(board);
+            int? result = CheckWinner(board);
             if (result != null)
             {
                 return result;
@@ -117,7 +117,7 @@ namespace Tic_Tac_Toe
         // -1: Opponent won the game
         // null: game is not over
         // 0: tie
-        public int? checkWinner(int[,] board)
+        public int? CheckWinner(int[,] board)
         {
             int[] lines = new int[]
             {

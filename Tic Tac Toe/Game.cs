@@ -1,4 +1,6 @@
-﻿namespace Tic_Tac_Toe
+﻿using static System.Runtime.InteropServices.JavaScript.JSType;
+
+namespace Tic_Tac_Toe
 {
     internal class Game
     {
@@ -18,10 +20,16 @@
         }
 
         // Constructor for singleplayer
-        public Game(IPlayer computer) : this(new PhysPlayer(), computer) { }
+        public static Game CreateSingleplayer()
+        {
+            return new Game(new PhysPlayer(), new Computer());
+        }
 
         // Constructor for multiplayer
-        public Game() : this(new PhysPlayer(), new PhysPlayer()) { }
+        public static Game CreateMultiplayer()
+        {
+            return new Game(new PhysPlayer(), new PhysPlayer());
+        }
 
         // Start the game
         public void Start()
@@ -33,7 +41,7 @@
             while (true)
             {
                 // Get the current Player's next move and check if he has won
-                if (this.Tick(curPlayer))
+                if (this.PerformTurn(curPlayer))
                 {
                     RenderBoard();
                     Console.WriteLine("\n Player {0} won!", curPlayer.GetSymbol());
@@ -53,7 +61,7 @@
                 // curPlayer = curPlayer == player1 ? player2 : player1;
 
                 // End the game if all spots on the board are taken
-                if (CheckTie())
+                if (IsBoardFull())
                 {
                     RenderBoard();
                     Console.WriteLine("\n Tie!");
@@ -62,9 +70,9 @@
             }
         }
 
-        // Game tick
+        // Allows a player to perform his turn
         // The return value is true if the player has won and false if he hasn't
-        private bool Tick(IPlayer player)
+        private bool PerformTurn(IPlayer player)
         {
             // Get the player's next move until it is a valid one
             int[] move;
@@ -110,8 +118,8 @@
             return false;
         }
 
-        // Check if there is a tie
-        private bool CheckTie()
+        // Check if the board is full
+        private bool IsBoardFull()
         {
             // The match is tied if all spots are taken
             foreach(int e in board)
