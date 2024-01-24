@@ -27,7 +27,7 @@
             while (true)
             {
                 // Get the current Player's next move and check if he has won
-                if (this.Tick(curPlayer))
+                if (this.PerformTurn(curPlayer))
                 {
                     RenderBoard();
                     Console.WriteLine("\n Player {0} won!", curPlayer.GetSymbol());
@@ -47,7 +47,7 @@
                 // curPlayer = curPlayer == player1 ? player2 : player1;
 
                 // End the game if all spots on the board are taken
-                if (CheckTie())
+                if (IsBoardFull())
                 {
                     RenderBoard();
                     Console.WriteLine("\n Tie!");
@@ -56,9 +56,9 @@
             }
         }
 
-        // Game tick
+        // Allows a player to perform his turn
         // The return value is true if the player has won and false if he hasn't
-        private bool Tick(Player player)
+        private bool PerformTurn(Player player)
         {
             // Get the player's next move until it is a valid one
             int[] move;
@@ -104,8 +104,8 @@
             return false;
         }
 
-        // Check if there is a tie
-        private bool CheckTie()
+        // Check if the board is full
+        private bool IsBoardFull()
         {
             // The match is tied if all spots are taken
             foreach(int e in board)
