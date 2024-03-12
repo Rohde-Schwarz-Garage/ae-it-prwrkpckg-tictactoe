@@ -43,7 +43,7 @@ namespace Tic_Tac_Toe
         public int? minimax(int[,] board, int depth, bool isMaximizing)
         {
             // Returns 0 for a tie, 1 for a win and -1 if the enemy won
-            int? result = CheckWinner(board);
+            int? result = Game.CheckWinner(board, GetNumber());
             if (result != null)
             {
                 return result;
@@ -87,51 +87,6 @@ namespace Tic_Tac_Toe
                 }
                 return bestScore;
             }
-        }
-
-        // Determines if the game is over and the winner
-        // 1: AI won the game
-        // -1: Opponent won the game
-        // null: game is not over
-        // 0: tie
-        public int? CheckWinner(int[,] board)
-        {
-            int[] lines = new int[]
-            {
-                board[0, 0] + board[0, 1] + board[0, 2],
-                board[1, 0] + board[1, 1] + board[1, 2],
-                board[2, 0] + board[2, 1] + board[2, 2],
-                board[0, 0] + board[1, 0] + board[2, 0],
-                board[0, 1] + board[1, 1] + board[2, 1],
-                board[0, 2] + board[1, 2] + board[2, 2],
-                board[0, 0] + board[1, 1] + board[2, 2],
-                board[2, 0] + board[1, 1] + board[0, 2]
-            };
-
-            for (int i = 0; i < lines.Length; i++)
-            {
-                if (lines[i] == 3 * GetNumber())
-                {
-                    return 1; // AI wins
-                }
-                else if (lines[i] == 3 * -GetNumber())
-                {
-                    return -1; // Opponent wins
-                }
-            }
-
-            for (int i = 0; i < 3; i++)
-            {
-                for (int j = 0; j < 3; j++)
-                {
-                    if (board[i, j] == 0)
-                    {
-                        return null; // Game is not over
-                    }
-                }
-            }
-
-            return 0; // Game is a tie
         }
     }
 }

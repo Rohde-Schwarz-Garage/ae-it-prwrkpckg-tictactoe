@@ -90,7 +90,7 @@ namespace Tic_Tac_Toe
             RenderBoard();
 
             // Check if the player has won
-            if (CheckWin())
+            if (CheckWinner(board, player.GetNumber()) == 1)
             {
                 return true;
             }
@@ -107,34 +107,49 @@ namespace Tic_Tac_Toe
             return board[move[0], move[1]] == 0;
         }
 
-        // Check if a player has won
-        private bool CheckWin()
+        // Determines if the game is over and the winner
+        // 1: The player with playerNumber wins
+        // -1: The opponent wins
+        // null: game is not over
+        // 0: tie
+        public static int? CheckWinner(int[,] board, int playerNumber)
         {
-            // Check for completed rows
-            if (board[0, 0] != 0 && board[0, 1] == board[0, 0] && board[0, 2] == board[0, 0] ||
-                board[1, 0] != 0 && board[1, 1] == board[1, 0] && board[1, 2] == board[1, 0] ||
-                board[2, 0] != 0 && board[2, 1] == board[2, 0] && board[2, 2] == board[2, 0])
+            int[] lines = new int[]
             {
-                return true;
+                board[0, 0] + board[0, 1] + board[0, 2],
+                board[1, 0] + board[1, 1] + board[1, 2],
+                board[2, 0] + board[2, 1] + board[2, 2],
+                board[0, 0] + board[1, 0] + board[2, 0],
+                board[0, 1] + board[1, 1] + board[2, 1],
+                board[0, 2] + board[1, 2] + board[2, 2],
+                board[0, 0] + board[1, 1] + board[2, 2],
+                board[2, 0] + board[1, 1] + board[0, 2]
+            };
+
+            for (int i = 0; i < lines.Length; i++)
+            {
+                if (lines[i] == 3 * playerNumber)
+                {
+                    return 1; // Player wins
+                }
+                else if (lines[i] == 3 * -playerNumber)
+                {
+                    return -1; // Opponent wins
+                }
             }
 
-            // Check for completed columns
-            if (board[0, 0] != 0 && board[1, 0] == board[0, 0] && board[2, 0] == board[0, 0] ||
-                board[0, 1] != 0 && board[1, 1] == board[0, 1] && board[2, 1] == board[0, 1] ||
-                board[0, 2] != 0 && board[1, 2] == board[0, 2] && board[2, 2] == board[0, 2])
+            for (int i = 0; i < 3; i++)
             {
-                return true;
+                for (int j = 0; j < 3; j++)
+                {
+                    if (board[i, j] == 0)
+                    {
+                        return null; // Game is not over
+                    }
+                }
             }
 
-            // Check for completed diagonals
-            if (board[0, 0] != 0 && board[1, 1] == board[0, 0] && board[2, 2] == board[0, 0] ||
-                board[0, 2] != 0 && board[1, 1] == board[0, 2] && board[2, 0] == board[0, 2])
-            {
-                return true;
-            }
-
-            // Else return false
-            return false;
+            return 0; // Game is a tie
         }
 
         // Check if the board is full
