@@ -24,7 +24,7 @@ namespace Tic_Tac_Toe
                     // If yes, simulate taking the spot and check which score could be achieved
                     if (board[i, j] == 0)
                     {
-                        board[i, j] = GetNumber();
+                        board[i, j] = Number;
                         int? score = minimax(board, 0, false);
                         board[i, j] = 0;
 
@@ -45,7 +45,7 @@ namespace Tic_Tac_Toe
         public int? minimax(int[,] board, int depth, bool isMaximizing)
         {
             // Returns 0 for a tie, 1 for a win and -1 if the enemy won
-            int? result = Game.CheckWinner(board, GetNumber());
+            int? result = Game.CheckWinner(board, Number);
             if (result != null)
             {
                 return result;
@@ -61,7 +61,7 @@ namespace Tic_Tac_Toe
                     {
                         if (board[i, j] == 0)
                         {
-                            board[i, j] = GetNumber();
+                            board[i, j] = Number;
                             int? score = minimax(board, depth + 1, false);
                             board[i, j] = 0;
                             bestScore = Math.Max((int) score, bestScore);
@@ -80,7 +80,7 @@ namespace Tic_Tac_Toe
                     {
                         if (board[i, j] == 0)
                         {
-                            board[i, j] = -GetNumber();
+                            board[i, j] = -Number;
                             int? score = minimax(board, depth + 1, true);
                             board[i, j] = 0;
                             bestScore = Math.Min((int) score, bestScore);

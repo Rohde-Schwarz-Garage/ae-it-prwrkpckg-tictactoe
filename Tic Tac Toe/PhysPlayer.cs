@@ -9,20 +9,23 @@ namespace Tic_Tac_Toe
     // Class which represents a real (physical) player
     internal class PhysPlayer : Player
     {
+        public PhysPlayer(char symbol, int number) : base(symbol, number) { }
+
         // Get the next move from the player
         public override int[] Move(int[,] board)
         {
-            Console.WriteLine("Player {0}'s turn: Choose wisely!", GetSymbol());
+            Console.WriteLine("Player {0}'s turn: Choose wisely!", Symbol);
 
             // Ask the player for a column until he enters a valid one
             int column;
             do
             {
-                Console.Write("In welcher Spalte soll der nächste Zug stattfinden? [1-3] ");
+                Console.Write("In which column do you want to place your mark? [1-3] ");
                 try
                 {
                     column = Convert.ToInt32(Console.ReadLine());
-                } catch
+                }
+                catch
                 {
                     column = 0;
                 }
@@ -33,7 +36,7 @@ namespace Tic_Tac_Toe
             int row;
             do
             {
-                Console.Write("In welcher Reihe soll der nächste Zug stattfinden? [1-3] ");
+                Console.Write("In which row do you want to place your mark? [1-3] ");
                 try
                 {
                     row = Convert.ToInt32(Console.ReadLine());

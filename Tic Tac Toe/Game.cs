@@ -16,30 +16,21 @@ namespace Tic_Tac_Toe
             board = new int[3, 3];
 
             // Initialize player symbols and numbers
-<<<<<<< HEAD
-            this.player1 = player1;
-            this.player1.SetSymbol('X');
-            this.player1.SetNumber(1);
 
+            this.player1 = player1;
             this.player2 = player2;
-            this.player2.SetSymbol('O');
-            this.player2.SetNumber(-1);
         }
 
         // Constructor for singleplayer
         public static Game CreateSingleplayer()
         {
-            return new Game(new PhysPlayer(), new Computer());
+            return new Game(new PhysPlayer('X', 1), new Computer('O', -1));
         }
 
         // Constructor for multiplayer
         public static Game CreateMultiplayer()
         {
-            return new Game(new PhysPlayer(), new PhysPlayer());
-=======
-            player1 = new Player('X', 1);
-            player2 = new Player('O', -1);
->>>>>>> e9295be (Moved setting of symbol and number to player constructor)
+            return new Game(new PhysPlayer('X', 1), new PhysPlayer('O', -1));
         }
 
         // Start the game
@@ -55,7 +46,7 @@ namespace Tic_Tac_Toe
                 if (this.PerformTurn(curPlayer))
                 {
                     RenderBoard();
-                    Console.WriteLine("\n Player {0} won!", curPlayer.GetSymbol());
+                    Console.WriteLine("\n Player {0} won!", curPlayer.Number);
                     break;
                 }
 
@@ -91,11 +82,11 @@ namespace Tic_Tac_Toe
             while (!ValidateMove(move));
 
             // Add the move to the board
-            board[move[0], move[1]] = player.GetNumber(); ;
+            board[move[0], move[1]] = player.Number; ;
             RenderBoard();
 
             // Check if the player has won
-            if (CheckWinner(board, player.GetNumber()) == 1)
+            if (CheckWinner(board, player.Number) == 1)
             {
                 return true;
             }
@@ -184,13 +175,13 @@ namespace Tic_Tac_Toe
                     // Check, which character to print in the current cell
                     // If the spot is not taken, the cell is left empty
                     char cellContent = ' ';
-                    if (board[r, c] == player1.GetNumber())
+                    if (board[r, c] == player1.Number)
                     {
-                        cellContent = player1.GetSymbol();
+                        cellContent = player1.Symbol;
                     }
-                    if (board[r, c] == player2.GetNumber())
+                    if (board[r, c] == player2.Number)
                     {
-                        cellContent = player2.GetSymbol();
+                        cellContent = player2.Symbol;
                     }
 
                     Console.Write("{0} | ", cellContent);

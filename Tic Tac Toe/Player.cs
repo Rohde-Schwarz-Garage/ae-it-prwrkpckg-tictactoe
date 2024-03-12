@@ -11,17 +11,16 @@ namespace Tic_Tac_Toe
     {
         private char symbol;
         private int number;
+
+        // Define getters for the variables so they can be accessed
+        public char Symbol { get => symbol; }
+        public int Number { get => number; }
+
         public Player(char symbol, int number)
         {
             this.symbol = symbol;
             this.number = number;
         }
-
-        // Get the player's symbol
-        public char GetSymbol() { return symbol; }
-
-        // Get the player's number
-        public int GetNumber() { return number; }
 
         // Get the next move from the player
         public abstract int[] Move(int[,] board);
