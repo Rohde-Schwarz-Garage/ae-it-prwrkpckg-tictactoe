@@ -2,7 +2,7 @@
 {
     internal class Game
     {
-        private int[,] board;
+        private FieldState[,] board;
         private Player player1;
         private Player player2;
 
@@ -10,11 +10,11 @@
         public Game()
         {
             // Initialize the board
-            board = new int[3, 3];
+            board = new FieldState[3, 3];
 
             // Initialize player symbols and numbers
-            player1 = new Player('X', 1);
-            player2 = new Player('O', -1);
+            player1 = new Player('X', FieldState.Player1);
+            player2 = new Player('O', FieldState.Player2);
         }
 
         // Start the game
@@ -30,7 +30,7 @@
                 if (this.PerformTurn(curPlayer))
                 {
                     RenderBoard();
-                    Console.WriteLine("\n Player {0} won!", curPlayer.Number);
+                    Console.WriteLine("\n Player {0} won!", curPlayer.Symbol);
                     break;
                 }
 
@@ -61,12 +61,12 @@
             int[] move;
             do
             {
-                move = player.Move(board);
+                move = player.Move();
             }
             while (!ValidateMove(move));
 
             // Add the move to the board
-            board[move[0], move[1]] = player.Number; ;
+            board[move[0], move[1]] = player.Number;
             RenderBoard();
 
             // Check if the player has won
@@ -84,7 +84,7 @@
         private bool ValidateMove(int[] move)
         {
             // A move is valid if the spot on the board is still empty e.g. 0
-            return board[move[0], move[1]] == 0;
+            return board[move[0], move[1]] == FieldState.Empty;
         }
 
         // Determines if the game is over and the winner
@@ -92,27 +92,27 @@
         // -1: The opponent wins
         // null: game is not over
         // 0: tie
-        public static int? CheckWinner(int[,] board, int playerNumber)
+        public static int? CheckWinner(FieldState[,] board, FieldState playerNumber)
         {
             int[] lines = new int[]
             {
-                board[0, 0] + board[0, 1] + board[0, 2],
-                board[1, 0] + board[1, 1] + board[1, 2],
-                board[2, 0] + board[2, 1] + board[2, 2],
-                board[0, 0] + board[1, 0] + board[2, 0],
-                board[0, 1] + board[1, 1] + board[2, 1],
-                board[0, 2] + board[1, 2] + board[2, 2],
-                board[0, 0] + board[1, 1] + board[2, 2],
-                board[2, 0] + board[1, 1] + board[0, 2]
+                (int) board[0, 0] + (int) board[0, 1] + (int) board[0, 2],
+                (int) board[1, 0] + (int) board[1, 1] + (int) board[1, 2],
+                (int) board[2, 0] + (int) board[2, 1] + (int) board[2, 2],
+                (int) board[0, 0] + (int) board[1, 0] + (int) board[2, 0],
+                (int) board[0, 1] + (int) board[1, 1] + (int) board[2, 1],
+                (int) board[0, 2] + (int) board[1, 2] + (int) board[2, 2],
+                (int) board[0, 0] + (int) board[1, 1] + (int) board[2, 2],
+                (int) board[2, 0] + (int) board[1, 1] + (int) board[0, 2]
             };
 
             for (int i = 0; i < lines.Length; i++)
             {
-                if (lines[i] == 3 * playerNumber)
+                if (lines[i] == 3 * (int) playerNumber)
                 {
                     return 1; // Player wins
                 }
-                else if (lines[i] == 3 * -playerNumber)
+                else if (lines[i] == 3 * - (int) playerNumber)
                 {
                     return -1; // Opponent wins
                 }
@@ -122,7 +122,7 @@
             {
                 for (int j = 0; j < 3; j++)
                 {
-                    if (board[i, j] == 0)
+                    if (board[i, j] == FieldState.Empty)
                     {
                         return null; // Game is not over
                     }
@@ -136,9 +136,9 @@
         private bool IsBoardFull()
         {
             // The match is tied if all spots are taken
-            foreach(int e in board)
+            foreach(FieldState e in board)
             {
-                if (e == 0)
+                if (e == FieldState.Empty)
                 {
                     return false;
                 }
