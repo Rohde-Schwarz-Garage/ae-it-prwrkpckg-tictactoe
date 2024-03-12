@@ -9,6 +9,8 @@ namespace Tic_Tac_Toe
     // Class which represents a computer-player
     internal class Computer : Player
     {
+        public Computer(char symbol, int number) : base(symbol, number) { }
+
         // Get the computer's next move
         public override int[] Move(int[,] board)
         {

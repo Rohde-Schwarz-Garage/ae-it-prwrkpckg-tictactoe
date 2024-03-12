@@ -16,6 +16,7 @@ namespace Tic_Tac_Toe
             board = new int[3, 3];
 
             // Initialize player symbols and numbers
+<<<<<<< HEAD
             this.player1 = player1;
             this.player1.SetSymbol('X');
             this.player1.SetNumber(1);
@@ -35,6 +36,10 @@ namespace Tic_Tac_Toe
         public static Game CreateMultiplayer()
         {
             return new Game(new PhysPlayer(), new PhysPlayer());
+=======
+            player1 = new Player('X', 1);
+            player2 = new Player('O', -1);
+>>>>>>> e9295be (Moved setting of symbol and number to player constructor)
         }
 
         // Start the game

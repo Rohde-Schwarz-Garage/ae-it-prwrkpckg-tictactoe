@@ -11,23 +11,19 @@ namespace Tic_Tac_Toe
     {
         private char symbol;
         private int number;
-
-        public void SetSymbol(char symbol)
+        public Player(char symbol, int number)
         {
             this.symbol = symbol;
-        }
-        public char GetSymbol()
-        {
-            return symbol;
-        }
-        public void SetNumber(int number)
-        {
             this.number = number;
         }
-        public int GetNumber()
-        {
-            return number;
-        }
+
+        // Get the player's symbol
+        public char GetSymbol() { return symbol; }
+
+        // Get the player's number
+        public int GetNumber() { return number; }
+
+        // Get the next move from the player
         public abstract int[] Move(int[,] board);
     }
 }
