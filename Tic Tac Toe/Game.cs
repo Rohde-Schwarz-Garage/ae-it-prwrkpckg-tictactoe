@@ -63,9 +63,6 @@ namespace Tic_Tac_Toe
                     curPlayer = player1;
                 }
 
-                // If you are cool, you use this instead:
-                // curPlayer = curPlayer == player1 ? player2 : player1;
-
                 // End the game if all spots on the board are taken
                 if (IsBoardFull())
                 {
