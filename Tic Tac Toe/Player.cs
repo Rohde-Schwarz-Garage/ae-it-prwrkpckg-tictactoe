@@ -39,7 +39,7 @@ namespace Tic_Tac_Toe
             int column;
             do
             {
-                Console.Write("In welcher Spalte soll der nächste Zug stattfinden? [1-3] ");
+                Console.Write("In which column do you want to place your mark? [1-3] ");
                 try
                 {
                     column = Convert.ToInt32(Console.ReadLine());
@@ -54,7 +54,7 @@ namespace Tic_Tac_Toe
             int row;
             do
             {
-                Console.Write("In welcher Reihe soll der nächste Zug stattfinden? [1-3] ");
+                Console.Write("In which row do you want to place your mark? [1-3] ");
                 try
                 {
                     row = Convert.ToInt32(Console.ReadLine());
