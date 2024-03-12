@@ -13,8 +13,13 @@
             board = new int[3, 3];
 
             // Initialize player symbols and numbers
-            this.player1 = new Player().SetSymbol('X').SetNumber(1);
-            this.player2 = new Player().SetSymbol('O').SetNumber(-1);
+            player1 = new Player();
+            player1.SetSymbol('X');
+            player1.SetNumber(1);
+
+            player2 = new Player();
+            player2.SetSymbol('O');
+            player2.SetNumber(-1);
         }
 
         // Start the game
