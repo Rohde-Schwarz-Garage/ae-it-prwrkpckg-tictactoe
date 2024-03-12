@@ -30,7 +30,7 @@
                 if (this.PerformTurn(curPlayer))
                 {
                     RenderBoard();
-                    Console.WriteLine("\n Player {0} won!", curPlayer.GetSymbol());
+                    Console.WriteLine("\n Player {0} won!", curPlayer.Number);
                     break;
                 }
 
@@ -66,11 +66,11 @@
             while (!ValidateMove(move));
 
             // Add the move to the board
-            board[move[0], move[1]] = player.GetNumber(); ;
+            board[move[0], move[1]] = player.Number; ;
             RenderBoard();
 
             // Check if the player has won
-            if (CheckWinner(board, player.GetNumber()) == 1)
+            if (CheckWinner(board, player.Number) == 1)
             {
                 return true;
             }
@@ -159,13 +159,13 @@
                     // Check, which character to print in the current cell
                     // If the spot is not taken, the cell is left empty
                     char cellContent = ' ';
-                    if (board[r, c] == player1.GetNumber())
+                    if (board[r, c] == player1.Number)
                     {
-                        cellContent = player1.GetSymbol();
+                        cellContent = player1.Symbol;
                     }
-                    if (board[r, c] == player2.GetNumber())
+                    if (board[r, c] == player2.Number)
                     {
-                        cellContent = player2.GetSymbol();
+                        cellContent = player2.Symbol;
                     }
 
                     Console.Write("{0} | ", cellContent);
