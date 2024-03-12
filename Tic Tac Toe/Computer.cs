@@ -7,31 +7,10 @@ using System.Threading.Tasks;
 namespace Tic_Tac_Toe
 {
     // Class which represents a computer-player
-    internal class Computer : IPlayer
+    internal class Computer : Player
     {
-        private char symbol;
-        private int number;
-
-        // Set the player's symbol
-        public void SetSymbol(char symbol)
-        {
-            this.symbol = symbol;
-        }
-
-        // Get the player's symbol
-        public char GetSymbol() { return symbol; }
-
-        // Set the player's number
-        public void SetNumber(int number)
-        {
-            this.number = number;
-        }
-
-        // Get the player's number
-        public int GetNumber() { return number; }
-
         // Get the computer's next move
-        public int[] Move(int[,] board)
+        public override int[] Move(int[,] board)
         {
             int bestScore = -Int32.MaxValue;
             int[] move = new int[2];
@@ -43,7 +22,7 @@ namespace Tic_Tac_Toe
                     // If yes, simulate taking the spot and check which score could be achieved
                     if (board[i, j] == 0)
                     {
-                        board[i, j] = this.number;
+                        board[i, j] = GetNumber();
                         int? score = minimax(board, 0, false);
                         board[i, j] = 0;
 
@@ -80,7 +59,7 @@ namespace Tic_Tac_Toe
                     {
                         if (board[i, j] == 0)
                         {
-                            board[i, j] = this.number;
+                            board[i, j] = GetNumber();
                             int? score = minimax(board, depth + 1, false);
                             board[i, j] = 0;
                             bestScore = Math.Max((int) score, bestScore);
@@ -99,7 +78,7 @@ namespace Tic_Tac_Toe
                     {
                         if (board[i, j] == 0)
                         {
-                            board[i, j] = -number;
+                            board[i, j] = -GetNumber();
                             int? score = minimax(board, depth + 1, true);
                             board[i, j] = 0;
                             bestScore = Math.Min((int) score, bestScore);
@@ -131,11 +110,11 @@ namespace Tic_Tac_Toe
 
             for (int i = 0; i < lines.Length; i++)
             {
-                if (lines[i] == 3 * this.number)
+                if (lines[i] == 3 * GetNumber())
                 {
                     return 1; // AI wins
                 }
-                else if (lines[i] == 3 * -number)
+                else if (lines[i] == 3 * -GetNumber())
                 {
                     return -1; // Opponent wins
                 }

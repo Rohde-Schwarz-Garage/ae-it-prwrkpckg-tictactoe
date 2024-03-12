@@ -7,34 +7,12 @@ using System.Threading.Tasks;
 namespace Tic_Tac_Toe
 {
     // Class which represents a real (physical) player
-    internal class PhysPlayer : IPlayer
+    internal class PhysPlayer : Player
     {
-        private char symbol;
-        private int number;
-
-        // Set the player's symbol
-
-        public void SetSymbol(char symbol)
-        {
-            this.symbol = symbol;
-        }
-
-        // Get the player's symbol
-        public char GetSymbol() { return symbol; }
-
-        // Set the player's number
-        public void SetNumber(int number)
-        {
-            this.number = number;
-        }
-
-        // Get the player's number
-        public int GetNumber() { return number; }
-
         // Get the next move from the player
-        public int[] Move(int[,] board)
+        public override int[] Move(int[,] board)
         {
-            Console.WriteLine("Player {0}'s turn: Choose wisely!", this.symbol);
+            Console.WriteLine("Player {0}'s turn: Choose wisely!", GetSymbol());
 
             // Ask the player for a column until he enters a valid one
             int column;

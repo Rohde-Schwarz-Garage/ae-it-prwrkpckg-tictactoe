@@ -6,11 +6,11 @@ namespace Tic_Tac_Toe
     internal class Game
     {
         private int[,] board;
-        private IPlayer player1;
-        private IPlayer player2;
+        private Player player1;
+        private Player player2;
 
         // Base constructor
-        public Game(IPlayer player1, IPlayer player2)
+        public Game(Player player1, Player player2)
         {
             // Initialize the board
             board = new int[3, 3];
@@ -40,7 +40,7 @@ namespace Tic_Tac_Toe
         // Start the game
         public void Start()
         {
-            IPlayer curPlayer = player1;
+            Player curPlayer = player1;
             RenderBoard();
 
             // Game loop: runs until the game is finished
@@ -75,7 +75,7 @@ namespace Tic_Tac_Toe
 
         // Allows a player to perform his turn
         // The return value is true if the player has won and false if he hasn't
-        private bool PerformTurn(IPlayer player)
+        private bool PerformTurn(Player player)
         {
             // Get the player's next move until it is a valid one
             int[] move;
