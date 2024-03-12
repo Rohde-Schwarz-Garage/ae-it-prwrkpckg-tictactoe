@@ -40,7 +40,7 @@
                 }
 
                 // Set the other player for the next move
-                if(curPlayer == player1)
+                if (curPlayer == player1)
                 {
                     curPlayer = player2;
                 } else
@@ -70,15 +70,22 @@
             do
             {
                 move = player.Move(board);
-            } while (!ValidateMove(move));
+            }
+            while (!ValidateMove(move));
 
             // Add the move to the board
             board[move[0], move[1]] = player.GetNumber(); ;
             RenderBoard();
 
             // Check if the player has won
-            if (CheckWin()) return true;
-            return false;
+            if (CheckWin())
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         // Check if a move is valid
@@ -92,18 +99,27 @@
         private bool CheckWin()
         {
             // Check for completed rows
-            if (board[0, 0] != 0 && board[0, 1] == board[0, 0] && board[0, 2] == board[0, 0]) return true;
-            if (board[1, 0] != 0 && board[1, 1] == board[1, 0] && board[1, 2] == board[1, 0]) return true;
-            if (board[2, 0] != 0 && board[2, 1] == board[2, 0] && board[2, 2] == board[2, 0]) return true;
+            if (board[0, 0] != 0 && board[0, 1] == board[0, 0] && board[0, 2] == board[0, 0] ||
+                board[1, 0] != 0 && board[1, 1] == board[1, 0] && board[1, 2] == board[1, 0] ||
+                board[2, 0] != 0 && board[2, 1] == board[2, 0] && board[2, 2] == board[2, 0])
+            {
+                return true;
+            }
 
             // Check for completed columns
-            if (board[0, 0] != 0 && board[1, 0] == board[0, 0] && board[2, 0] == board[0, 0]) return true;
-            if (board[0, 1] != 0 && board[1, 1] == board[0, 1] && board[2, 1] == board[0, 1]) return true;
-            if (board[0, 2] != 0 && board[1, 2] == board[0, 2] && board[2, 2] == board[0, 2]) return true;
+            if (board[0, 0] != 0 && board[1, 0] == board[0, 0] && board[2, 0] == board[0, 0] ||
+                board[0, 1] != 0 && board[1, 1] == board[0, 1] && board[2, 1] == board[0, 1] ||
+                board[0, 2] != 0 && board[1, 2] == board[0, 2] && board[2, 2] == board[0, 2])
+            {
+                return true;
+            }
 
             // Check for completed diagonals
-            if (board[0, 0] != 0 && board[1, 1] == board[0, 0] && board[2, 2] == board[0, 0]) return true;
-            if (board[0, 2] != 0 && board[1, 1] == board[0, 2] && board[2, 0] == board[0, 2]) return true;
+            if (board[0, 0] != 0 && board[1, 1] == board[0, 0] && board[2, 2] == board[0, 0] ||
+                board[0, 2] != 0 && board[1, 1] == board[0, 2] && board[2, 0] == board[0, 2])
+            {
+                return true;
+            }
 
             // Else return false
             return false;
@@ -115,7 +131,10 @@
             // The match is tied if all spots are taken
             foreach(int e in board)
             {
-                if (e == 0) return false;
+                if (e == 0)
+                {
+                    return false;
+                }
             }
             return true;
         }
@@ -133,8 +152,14 @@
                     // Check, which character to print in the current cell
                     // If the spot is not taken, the cell is left empty
                     char cellContent = ' ';
-                    if (board[r, c] == player1.GetNumber()) cellContent = player1.GetSymbol();
-                    if (board[r, c] == player2.GetNumber()) cellContent = player2.GetSymbol();
+                    if (board[r, c] == player1.GetNumber())
+                    {
+                        cellContent = player1.GetSymbol();
+                    }
+                    if (board[r, c] == player2.GetNumber())
+                    {
+                        cellContent = player2.GetSymbol();
+                    }
 
                     Console.Write("{0} | ", cellContent);
                 }
