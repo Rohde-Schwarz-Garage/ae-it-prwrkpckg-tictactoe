@@ -12,20 +12,14 @@ namespace Tic_Tac_Toe
         private char symbol;
         private int number;
 
-        // Set the player's symbol
-        public void SetSymbol(char symbol)
+        public Player(char symbol, int number)
         {
             this.symbol = symbol;
+            this.number = number;
         }
 
         // Get the player's symbol
         public char GetSymbol() { return symbol; }
-
-        // Set the player's number
-        public void SetNumber(int number)
-        {
-            this.number = number;
-        }
 
         // Get the player's number
         public int GetNumber() { return number; }
