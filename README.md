@@ -6,6 +6,6 @@ Programmiere Tic Tac Toe in einer objektorientierten Programmiersprache deiner W
 Zunächst solltest du dich auf eine Zwei-Spieler-Version konzentrieren - sobald diese geschafft ist, kannst du dich aber auch an einem Computerspieler für das Spiel versuchen.  
 Das Spiel soll in der Konsole laufen, du musst dich also nicht um eine graphische Oberfläche kümmern.
 
-Solltest du beim Programmieren an einer bestimmten Stelle nicht weiterkommen, findest du [hier](Hints.md) ein paar Tipps. Außerdem gibt es eine Musterlösung (in C#), die dir weiterhelfen kann.
+Solltest du beim Programmieren an einer bestimmten Stelle nicht weiterkommen, findest du [hier](Hints.md) ein paar Tipps. Außerdem gibt es eine Musterlösung (in C#), die dir weiterhelfen kann. Und sollte dir dieses Projekt momentan noch zu schwer sein, ist das auch kein Problem. Die nötigen Fähigkeiten wirst du im Laufe deiner Ausbildung noch erlernen.
 
-Sollte dich auch die Musterlösung für die Ein-Spieler-Version des Spiels interessieren, findest du sie auf dem [AI-Branch](../AI).
+Solltest du schon mehr Programmiererfahrung haben und dich auch für die Musterlösung der Ein-Spieler-Version des Spiels interessieren, findest du sie auf dem [AI-Branch](../AI).
