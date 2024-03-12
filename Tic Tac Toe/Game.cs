@@ -1,4 +1,5 @@
-﻿using static System.Runtime.InteropServices.JavaScript.JSType;
+﻿using System.Numerics;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Tic_Tac_Toe
 {
@@ -15,8 +16,13 @@ namespace Tic_Tac_Toe
             board = new int[3, 3];
 
             // Initialize player symbols and numbers
-            this.player1 = player1.SetSymbol('X').SetNumber(1);
-            this.player2 = player2.SetSymbol('O').SetNumber(-1);
+            this.player1 = player1;
+            this.player1.SetSymbol('X');
+            this.player1.SetNumber(1);
+
+            this.player2 = player2;
+            this.player2.SetSymbol('O');
+            this.player2.SetNumber(-1);
         }
 
         // Constructor for singleplayer

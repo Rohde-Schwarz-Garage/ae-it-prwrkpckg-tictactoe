@@ -13,20 +13,18 @@ namespace Tic_Tac_Toe
         private int number;
 
         // Set the player's symbol
-        public IPlayer SetSymbol(char symbol)
+        public void SetSymbol(char symbol)
         {
             this.symbol = symbol;
-            return this;
         }
 
         // Get the player's symbol
         public char GetSymbol() { return symbol; }
 
         // Set the player's number
-        public IPlayer SetNumber(int number)
+        public void SetNumber(int number)
         {
             this.number = number;
-            return this;
         }
 
         // Get the player's number
