@@ -9,10 +9,10 @@ namespace Tic_Tac_Toe
     // Class which represents a computer-player
     internal class Computer : Player
     {
-        public Computer(char symbol, int number) : base(symbol, number) { }
+        public Computer(char symbol, FieldState number) : base(symbol, number) { }
 
         // Get the computer's next move
-        public override int[] Move(int[,] board)
+        public override int[] Move(FieldState[,] board)
         {
             int bestScore = -Int32.MaxValue;
             int[] move = new int[2];
@@ -42,7 +42,7 @@ namespace Tic_Tac_Toe
         }
 
         // Implementation of the minimax algorithm
-        public int? minimax(int[,] board, int depth, bool isMaximizing)
+        public int? minimax(FieldState[,] board, int depth, bool isMaximizing)
         {
             // Returns 0 for a tie, 1 for a win and -1 if the enemy won
             int? result = Game.CheckWinner(board, Number);
@@ -80,7 +80,7 @@ namespace Tic_Tac_Toe
                     {
                         if (board[i, j] == 0)
                         {
-                            board[i, j] = -Number;
+                            board[i, j] = (FieldState) (- (int) Number);
                             int? score = minimax(board, depth + 1, true);
                             board[i, j] = 0;
                             bestScore = Math.Min((int) score, bestScore);

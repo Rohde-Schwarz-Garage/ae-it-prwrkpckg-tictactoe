@@ -9,10 +9,10 @@ namespace Tic_Tac_Toe
     // Class which represents a real (physical) player
     internal class PhysPlayer : Player
     {
-        public PhysPlayer(char symbol, int number) : base(symbol, number) { }
+        public PhysPlayer(char symbol, FieldState number) : base(symbol, number) { }
 
         // Get the next move from the player
-        public override int[] Move(int[,] board)
+        public override int[] Move(FieldState[,] board)
         {
             Console.WriteLine("Player {0}'s turn: Choose wisely!", Symbol);
 

@@ -5,7 +5,7 @@ namespace Tic_Tac_Toe
 {
     internal class Game
     {
-        private int[,] board;
+        private FieldState[,] board;
         private Player player1;
         private Player player2;
 
@@ -13,9 +13,7 @@ namespace Tic_Tac_Toe
         public Game(Player player1, Player player2)
         {
             // Initialize the board
-            board = new int[3, 3];
-
-            // Initialize player symbols and numbers
+            board = new FieldState[3, 3];
 
             this.player1 = player1;
             this.player2 = player2;
@@ -24,13 +22,13 @@ namespace Tic_Tac_Toe
         // Constructor for singleplayer
         public static Game CreateSingleplayer()
         {
-            return new Game(new PhysPlayer('X', 1), new Computer('O', -1));
+            return new Game(new PhysPlayer('X', FieldState.Player1), new Computer('O', FieldState.Player2));
         }
 
         // Constructor for multiplayer
         public static Game CreateMultiplayer()
         {
-            return new Game(new PhysPlayer('X', 1), new PhysPlayer('O', -1));
+            return new Game(new PhysPlayer('X', FieldState.Player1), new PhysPlayer('O', FieldState.Player2));
         }
 
         // Start the game
@@ -46,7 +44,7 @@ namespace Tic_Tac_Toe
                 if (this.PerformTurn(curPlayer))
                 {
                     RenderBoard();
-                    Console.WriteLine("\n Player {0} won!", curPlayer.Number);
+                    Console.WriteLine("\n Player {0} won!", curPlayer.Symbol);
                     break;
                 }
 
@@ -82,7 +80,7 @@ namespace Tic_Tac_Toe
             while (!ValidateMove(move));
 
             // Add the move to the board
-            board[move[0], move[1]] = player.Number; ;
+            board[move[0], move[1]] = player.Number;
             RenderBoard();
 
             // Check if the player has won
@@ -100,7 +98,7 @@ namespace Tic_Tac_Toe
         private bool ValidateMove(int[] move)
         {
             // A move is valid if the spot on the board is still empty e.g. 0
-            return board[move[0], move[1]] == 0;
+            return board[move[0], move[1]] == FieldState.Empty;
         }
 
         // Determines if the game is over and the winner
@@ -108,27 +106,27 @@ namespace Tic_Tac_Toe
         // -1: The opponent wins
         // null: game is not over
         // 0: tie
-        public static int? CheckWinner(int[,] board, int playerNumber)
+        public static int? CheckWinner(FieldState[,] board, FieldState playerNumber)
         {
             int[] lines = new int[]
             {
-                board[0, 0] + board[0, 1] + board[0, 2],
-                board[1, 0] + board[1, 1] + board[1, 2],
-                board[2, 0] + board[2, 1] + board[2, 2],
-                board[0, 0] + board[1, 0] + board[2, 0],
-                board[0, 1] + board[1, 1] + board[2, 1],
-                board[0, 2] + board[1, 2] + board[2, 2],
-                board[0, 0] + board[1, 1] + board[2, 2],
-                board[2, 0] + board[1, 1] + board[0, 2]
+                (int) board[0, 0] + (int) board[0, 1] + (int) board[0, 2],
+                (int) board[1, 0] + (int) board[1, 1] + (int) board[1, 2],
+                (int) board[2, 0] + (int) board[2, 1] + (int) board[2, 2],
+                (int) board[0, 0] + (int) board[1, 0] + (int) board[2, 0],
+                (int) board[0, 1] + (int) board[1, 1] + (int) board[2, 1],
+                (int) board[0, 2] + (int) board[1, 2] + (int) board[2, 2],
+                (int) board[0, 0] + (int) board[1, 1] + (int) board[2, 2],
+                (int) board[2, 0] + (int) board[1, 1] + (int) board[0, 2]
             };
 
             for (int i = 0; i < lines.Length; i++)
             {
-                if (lines[i] == 3 * playerNumber)
+                if (lines[i] == 3 * (int) playerNumber)
                 {
                     return 1; // Player wins
                 }
-                else if (lines[i] == 3 * -playerNumber)
+                else if (lines[i] == 3 * - (int) playerNumber)
                 {
                     return -1; // Opponent wins
                 }
@@ -138,7 +136,7 @@ namespace Tic_Tac_Toe
             {
                 for (int j = 0; j < 3; j++)
                 {
-                    if (board[i, j] == 0)
+                    if (board[i, j] == FieldState.Empty)
                     {
                         return null; // Game is not over
                     }
@@ -152,9 +150,9 @@ namespace Tic_Tac_Toe
         private bool IsBoardFull()
         {
             // The match is tied if all spots are taken
-            foreach(int e in board)
+            foreach(FieldState e in board)
             {
-                if (e == 0)
+                if (e == FieldState.Empty)
                 {
                     return false;
                 }

@@ -10,19 +10,19 @@ namespace Tic_Tac_Toe
     internal abstract class Player
     {
         private char symbol;
-        private int number;
+        private FieldState number;
 
         // Define getters for the variables so they can be accessed
         public char Symbol { get => symbol; }
-        public int Number { get => number; }
+        public FieldState Number { get => number; }
 
-        public Player(char symbol, int number)
+        public Player(char symbol, FieldState number)
         {
             this.symbol = symbol;
             this.number = number;
         }
 
         // Get the next move from the player
-        public abstract int[] Move(int[,] board);
+        public abstract int[] Move(FieldState[,] board);
     }
 }
