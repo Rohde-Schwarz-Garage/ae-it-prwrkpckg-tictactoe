@@ -48,7 +48,8 @@ namespace Tic_Tac_Toe
                 {
                     column = 0;
                 }
-            } while (column <= 0 || column > 3);
+            }
+            while (column <= 0 || column > 3);
 
             // Ask the player for a row until he enters a valid one
             int row;
@@ -63,7 +64,8 @@ namespace Tic_Tac_Toe
                 {
                     row = 0;
                 }
-            } while (row <= 0 || row > 3);
+            }
+            while (row <= 0 || row > 3);
 
             // Substract one, because array indices start at 0
             return [row - 1, column - 1];
