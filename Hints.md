@@ -4,7 +4,8 @@ Hier findest du ein paar Tipps, die dir weiterhelfen können.
 ## Klassenstruktur
 Sollte dir unklar sein, wie du die Klassen für das Projekt strukturieren sollst, kannst du dich an diesem Klassendiagramm orientieren:
 ![Klassendiagram](</Class Diagram.svg>)
-Im Folgenden findest du eine kurze Erläuterung zu jeder Klasse.
+
+Im Folgenden findest du außerdem eine kurze Erläuterung zu jeder Klasse.
 ### FieldState
 FieldState ist eine Enumeration, die den Status einer Zelle des Spielfeldes darstellt: Jedes Feld kann entweder leer, von Spieler 1 oder von Spieler 2 belegt sein.
 
