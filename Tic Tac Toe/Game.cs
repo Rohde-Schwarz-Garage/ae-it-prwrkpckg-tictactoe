@@ -35,7 +35,7 @@ namespace Tic_Tac_Toe
         public void Start()
         {
             Player curPlayer = player1;
-            RenderBoard();
+            PrintBoard();
 
             // Game loop: runs until the game is finished
             while (true)
@@ -43,7 +43,7 @@ namespace Tic_Tac_Toe
                 // Get the current Player's next move and check if he has won
                 if (this.PerformTurn(curPlayer))
                 {
-                    RenderBoard();
+                    PrintBoard();
                     Console.WriteLine("\n Player {0} won!", curPlayer.Symbol);
                     break;
                 }
@@ -58,9 +58,9 @@ namespace Tic_Tac_Toe
                 }
 
                 // End the game if all spots on the board are taken
-                if (IsBoardFull())
+                if (IsBoardFull(board))
                 {
-                    RenderBoard();
+                    PrintBoard();
                     Console.WriteLine("\n Tie!");
                     break;
                 }
@@ -81,7 +81,7 @@ namespace Tic_Tac_Toe
 
             // Add the move to the board
             board[move[0], move[1]] = player.Number;
-            RenderBoard();
+            PrintBoard();
 
             // Check if the player has won
             if (CheckWinner(board, player.Number) == 1)
@@ -120,6 +120,7 @@ namespace Tic_Tac_Toe
                 (int) board[2, 0] + (int) board[1, 1] + (int) board[0, 2]
             };
 
+            // Check if a player has filled a line and therefore won the game
             for (int i = 0; i < lines.Length; i++)
             {
                 if (lines[i] == 3 * (int) playerNumber)
@@ -132,22 +133,17 @@ namespace Tic_Tac_Toe
                 }
             }
 
-            for (int i = 0; i < 3; i++)
+            // Return null if the game is not over yet
+            if (!IsBoardFull(board))
             {
-                for (int j = 0; j < 3; j++)
-                {
-                    if (board[i, j] == FieldState.Empty)
-                    {
-                        return null; // Game is not over
-                    }
-                }
+                return null;
             }
 
             return 0; // Game is a tie
         }
 
         // Check if the board is full
-        private bool IsBoardFull()
+        public static bool IsBoardFull(FieldState[,] board)
         {
             // The match is tied if all spots are taken
             foreach(FieldState e in board)
@@ -161,7 +157,7 @@ namespace Tic_Tac_Toe
         }
 
         // Print the board to the console
-        private void RenderBoard()
+        private void PrintBoard()
         {
             Console.Clear();
             Console.WriteLine(new string('-', 13));
