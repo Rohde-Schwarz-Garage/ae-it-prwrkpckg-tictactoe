@@ -5,7 +5,7 @@
         static void Main(string[] args)
         {
             // Start a new game
-            Game game = new Game();
+            Game game = Game.CreateSingleplayer();
             game.Start();
         }
     }

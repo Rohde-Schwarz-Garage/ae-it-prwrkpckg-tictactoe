@@ -1,4 +1,7 @@
-﻿namespace Tic_Tac_Toe
+﻿using System.Numerics;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+
+namespace Tic_Tac_Toe
 {
     internal class Game
     {
@@ -6,15 +9,26 @@
         private Player player1;
         private Player player2;
 
-        // Constructor
-        public Game()
+        // Base constructor
+        public Game(Player player1, Player player2)
         {
             // Initialize the board
             board = new FieldState[3, 3];
 
-            // Initialize player symbols and numbers
-            player1 = new Player('X', FieldState.Player1);
-            player2 = new Player('O', FieldState.Player2);
+            this.player1 = player1;
+            this.player2 = player2;
+        }
+
+        // Constructor for singleplayer
+        public static Game CreateSingleplayer()
+        {
+            return new Game(new PhysPlayer('X', FieldState.Player1), new Computer('O', FieldState.Player2));
+        }
+
+        // Constructor for multiplayer
+        public static Game CreateMultiplayer()
+        {
+            return new Game(new PhysPlayer('X', FieldState.Player1), new PhysPlayer('O', FieldState.Player2));
         }
 
         // Start the game
@@ -61,7 +75,7 @@
             int[] move;
             do
             {
-                move = player.Move();
+                move = player.Move(board);
             }
             while (!ValidateMove(move));
 
